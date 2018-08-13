@@ -1,0 +1,44 @@
+{% extends 'errors/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'errors/css/imagescroll.css' %}">
+<div class="row">
+    {% for e in all_errors %}
+    <div class="card col s3 error-card">
+        <!-- <div class="w3-content w3-display-container card-image">
+            {% for i in e.error_images.all %}
+            <p>{{i.url}}</p>
+            <img class="mySlides activator thumbnail" src="{% static i.url %}">
+            {% endfor %}
+            <div class="w3-center w3-container w3-section w3-large-text-black w3-display-bottommiddle" style="width:100%">
+                <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+                <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+                <span class="w3-badge demo w3-border c3-transparent w3-hover-black" onclick="currentDiv(1)"></span>
+                <span class="w3-badge demo w3-border c3-transparent w3-hover-black" onclick="currentDiv(2)"></span>
+                <span class="w3-badge demo w3-border c3-transparent w3-hover-black" onclick="currentDiv(3)"></span>
+            </div>
+        </div> -->
+
+
+
+
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator thumbnail" src="{% static e.error_images.first.url %}">
+        </div>
+        <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">Error<i class="material-icons right">more_vert</i></span>
+            <p><a href="{% url 'main:show' e.id %}">More details please</a></p>
+        </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">{{e.contributor}}<i class="material-icons right">close</i></span>
+              <p>{{e.description}}</p>
+            </div>
+          </div>
+    {% endfor %}
+</div>
+    <a class="btn-floating btn-large waves-effect waves-light red" href="{% url 'main:add' %}"><i class="material-icons">add</i></a>
+<script src="{% static 'errors/js/imagescroll.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'errors/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<form action="{% url 'main:create' %}" method="post" enctype="multipart/form-data" id="add_error_form">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col s8">
+            <h5>Log an Error</h5>
+            <ul class="messages">
+                <li class="red-text" id="error-text"></li>
+            </ul>
+        </div>
+        <div class="col s4">
+            <p></p>
+            <button class="btn">Submit Error</button>
+        </div>
+    </div>
+    <div class="row">
+        <div id="files" class="col s4">
+            <p class="grey-text">Upload Screenshots</p>
+            <div class="dragArea">
+                <h6>Drag & Drop File(s) Here</h6>
+                <!-- <p>Or Select File:</p>
+                <div>
+                    <input type="file" name="manualUpload" id="imageFiles"/>
+                </div> -->
+            </div>
+            <div id="fileList">
+
+            </div>
+        </div>
+        <div class="col s1"></div>
+        <div class="col s7">
+            <div class="input-field">
+                <label for="">Description (optional)</label>
+                <textarea type="text" name="description" class="materialize-textarea"></textarea>
+            </div>
+            <p class="grey-text">Image Preview:</p>
+            <div class="resultImageWrapper">
+                <img src="" alt="" id="resultImage" width="500" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+{% load static %}
+<script src="{% static 'errors/js/dragdrop.js' %}"></script>
+
+{% endblock %}

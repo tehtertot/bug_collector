@@ -1,0 +1,140 @@
+{% extends 'errors/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<form action="{% url 'main:create' %}" method="post" enctype="multipart/form-data" id="add_form">
+    <div class="row">
+        <div class="col s8">
+            <h5>Log an Error</h5>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li class="red-text">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div class="col s4">
+            <p></p>
+            <button class="btn">Submit Error</button>
+        </div>
+    </div>
+    <div class="row">
+        {% csrf_token %}
+        <div id="files" class="col s6">
+            <p class="grey-text">Upload Screenshots</p>
+            <div class="row">    
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>File</span>
+                        <input type="file" name="images1">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">    
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>File</span>
+                        <input type="file" name="images2">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">    
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>File</span>
+                        <input type="file" name="images3">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s1"></div>
+        <div class="col s5">
+            <div class="input-field">
+                <label for="">Description</label>
+                <textarea type="text" name="description" class="materialize-textarea"></textarea>
+            </div>
+            <p class="grey-text">Image Preview:</p>
+            <div id="imagePreview"></div>
+            <canvas id="canvasImg">
+            </canvas>
+        </div>
+    </div>
+    </form>
+
+<script>
+    var thumbnails = {}
+
+    $('[type="file"]').change(function()
+    {
+        let which_file = this.name
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+        if (/^image/.test(files[0].type)){
+            var reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onloadend = function(){
+                thumbnails[which_file] = this.result;
+                displayImg(this.result);
+            }
+        }
+    })
+
+    function displayImg(uploaded_img) {
+        var img = new Image();
+        img.onload = function() {
+            const maxWidth = 450;
+            const maxHeight = 300;
+            var w = img.width;
+            var h = img.height;
+            console.log(w,h);
+            if (w > maxWidth) {
+                h = img.height * maxWidth / w;
+                w = maxWidth;
+                // img.height *= maxWidth/w;
+                // img.width = maxWidth;
+            }
+            console.log(w,h);
+            // var rectRatio = img.width / img.height;
+            // var boundsRatio = maxWidth / maxHeight;
+            // var w, h;
+            // if (rectRatio > boundsRatio) {
+            //     w = maxWidth;
+            //     h = img.height * (maxWidth / img.width);
+            // }
+            // else {
+            //     w = img.width * (maxHeight / img.height);
+            //     h = maxHeight;
+            // }
+            var ctx = $("#canvasImg").get(0).getContext('2d');
+            ctx.clearRect(0, 0, maxWidth, maxHeight);
+            $("#canvasImg").width(w);
+            $("#canvasImg").height(h);
+            ctx.drawImage(img, 0, 0, w, h);
+            var uri = $("#canvasImg").get(0).toDataURL("image/png");
+            $("#imagePreview").html('<img src="'+uri+'">');
+        }
+        img.src = uploaded_img;
+    }
+
+
+    // $('[type="file"]').hover(function() {
+    //     if (thumbnails[this.name]) {
+    //         $("#imagePreview").css("display", "inline-block");
+    //         $("#imagePreview").css("background-image", "url("+thumbnails[this.name]+")");
+    //     }
+    // });
+
+</script>
+{% endblock %}
+

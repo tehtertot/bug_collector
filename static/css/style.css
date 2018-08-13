@@ -1,0 +1,30 @@
+.row {
+    text-align: center;
+    width: 90%;
+    height: 100%;
+}
+
+.thumbnail {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: scale-down;
+}
+
+.error-card {
+    height: 300px;
+    margin: 15px auto;
+    padding: 15px;
+}
+
+.card-image {
+    height: 70%;
+}
+.card-content {
+    height: 20%;
+    text-align: left;
+}
+
+#canvasImg {
+    /* display: none; */
+    object-fit: scale-down;
+}

@@ -1,0 +1,19 @@
+.dragArea {
+    background-color: #efefef;
+    border: 3px dashed #cccccc;
+    border-radius: 10px;
+    text-align: center;
+    padding: 50px;
+}
+.dragArea.over {
+    border-color: #ff0000;
+    background-color: #FFE9EA;
+}
+.resultImageWrapper {
+    display: none;
+    margin-top: 50px;
+    text-align: center;
+}
+#resultImage {
+    box-shadow: rgba(0,0,0,0.4) 0 2px 5px;
+}
