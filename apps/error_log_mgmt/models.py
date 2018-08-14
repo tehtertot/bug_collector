@@ -5,6 +5,8 @@ class Keyword(models.Model):
     word = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+    def __repr__(self):
+        return f"<Keyword: {self.word}>"
 
 class StudentError(models.Model):
     description = models.TextField()
@@ -12,7 +14,7 @@ class StudentError(models.Model):
     keywords = models.ManyToManyField(Keyword, related_name="errors_submitted")
     # stack
     def __repr__(self):
-        return f"from {self.contributor}: {self.description}"
+        return f"<Error: {self.contributor}: {self.description}>"
 
 class ErrorImage(models.Model):
     url = models.CharField(max_length=255)
@@ -27,3 +29,5 @@ class Suggestion(models.Model):
     associated_error = models.ForeignKey(StudentError, related_name="error_suggestions", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+    def __repr__(self):
+        return f"<Suggestion: {self.content} for {self.associated_error}>"

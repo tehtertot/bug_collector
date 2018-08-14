@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views import generic
 from django.core.files.storage import FileSystemStorage
-from .models import StudentError, CustomUser, ErrorImage
+from .models import StudentError, CustomUser, ErrorImage, Keyword, Suggestion
 
 @login_required
 def index(request):
@@ -42,5 +42,26 @@ def create(request):
 @login_required
 def show(request, id):
     error_to_display = StudentError.objects.get(id=id)
-    context = {'error': error_to_display}
+    context = {'error': error_to_display,
+                'other_keywords': Keyword.objects.exclude(errors_submitted=error_to_display)
+               }
     return render(request, "errors/one.html", context)
+
+@login_required
+def add_keyword(request, error_id, keyword_id):
+    keyword = Keyword.objects.get(id=keyword_id)
+    StudentError.objects.get(id=error_id).keywords.add(keyword)
+    return redirect(reverse('main:show', kwargs={'id': error_id}))
+
+# @login_required
+# def remove_keyword(request, error_id, keyword_id):
+#     keyword = Keyword.objects.get(id=keyword_id)
+#     StudentError.objects.get(id=error_id).keywords.remove(keyword)
+#     return redirect(reverse('main:show', kwargs={'id': error_id}))
+
+@login_required
+def add_suggestion(request, error_id):
+    error = StudentError.objects.get(id=error_id)
+    current_user = CustomUser.objects.get(username=request.user)
+    Suggestion.objects.create(content=request.POST["suggestion"], associated_error=error, suggestor=current_user)
+    return redirect(reverse('main:show', kwargs={'id': error_id}))

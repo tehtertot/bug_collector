@@ -5,21 +5,35 @@
 }
 
 .thumbnail {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 90%;
+    max-height: 90%;
     object-fit: scale-down;
+    padding: 10px 5px;
+    margin: 0 auto;
 }
-
-.error-card {
-    height: 300px;
-    margin: 15px auto;
-    padding: 15px;
+.card.error-card {
+    height: 50vh;
+    margin: 10px;
+}
+.card.error-card.col.s3 {
+    width: 24%;
 }
 
 .card-image {
-    height: 80%;
+    height: 85%;
+    text-align: center;
 }
-.card-content {
-    height: 20%;
-    text-align: left;
+
+.card .card-content {
+    height: 10%;
+    padding: 10px;
 }
+
+.text-with-icon {
+    color: gray;
+    display: inline-flex;
+    vertical-align: sub;
+}
+    .material-icons.gray {
+        color: gray;
+    }

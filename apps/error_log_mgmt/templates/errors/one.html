@@ -6,19 +6,74 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'errors/css/imagescroll.css' %}">
 
-<div class="container">
-    <p>Submitted by: {{error.contributor}}</p>
-    
-    <div class="w3-content w3-display-container">
+<div class="container row">
+    <div class="col s9 w3-content w3-display-container">
         {% for i in error.error_images.all %}
         <img class="mySlides" src="{% static i.url %}">
         {% endfor %}
         <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
         <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
     </div>
-    <p>{{error.description}}</p>
+    <div class="col s3 error-info">
+        <ul class="collapsible">
+            <li>
+                <div class="collapsible-header">What was supposed to happen?</div>
+                <div class="collapsible-body">
+                    <span>{{error.description}}</span>
+                    <p class="x-small">Submitted by: {{error.contributor}}</p>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">What's the error?</div>
+                <div class="collapsible-body">
+                    {% for k in error.keywords.all %}
+                        <div class="chip">{{k.word}}</div>
+                    {% endfor %}
+                    <p><i class="material-icons modal-trigger" id="add_keyword" href="#add_modal">add_box</i></p>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">How can we fix it?</div>
+                <div class="collapsible-body">
+                    {% for s in error.error_suggestions.all %}
+                    <p>{{s.content}} (suggested by: {{s.suggestor.username}})</p>
+                    {% endfor %}
+                    <p><button class="btn modal-trigger" id="add_suggestion" href="#suggestion_modal">Make a suggestion</button></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>    
     
+<div id="add_modal" class="modal">
+    <div class="modal-content">
+        <h4>Add a Keyword</h4>
+        {% for key in other_keywords %}
+        <form action="/add_keyword/{{error.id}}/{{key.id}}" method="POST">
+            {% csrf_token %}
+            <button class="chip no-btn">{{key.word}}<i class="material-icons">add</i></button>
+        {% endfor %}
+        </form>
+    </div>
 </div>
+    
+<div id="suggestion_modal" class="modal">
+    <div class="modal-content">
+        <h4>Add a Suggestion</h4>
+        <p></p>
+        <p>Consider including: How would you describe the error in your own words? Where would you look first? What did you google? Do you have a helpful link to reference? How did you solve this?</p>
+        <form action="/add_suggestion/{{error.id}}" method="POST">
+            {% csrf_token %}
+            <div class="input-field">
+                <label for="">Your suggestion:</label>
+                <textarea type="text" name="suggestion" class="materialize-textarea"></textarea>
+                <button class="btn">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="{% static 'js/modals.js' %}" deferred></script>
+<script src="{% static 'js/collapsibles.js' %}" deferred></script>
 <script src="{% static 'errors/js/imagezoom.js' %}"></script>
 <script src="{% static 'errors/js/imagescroll.js' %}"></script>
 
