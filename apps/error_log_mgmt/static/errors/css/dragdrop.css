@@ -1,19 +1,54 @@
-.dragArea {
-    background-color: #efefef;
-    border: 3px dashed #cccccc;
-    border-radius: 10px;
-    text-align: center;
-    padding: 50px;
+#container {
+    height: 85vh;
 }
-.dragArea.over {
-    border-color: #ff0000;
-    background-color: #FFE9EA;
+    .top-row {
+        height: 10%;
+        margin-bottom: 0;
+    }
+
+.modal {
+    max-height: 85%;
 }
-.resultImageWrapper {
-    display: none;
-    margin-top: 50px;
-    text-align: center;
+    .modal-trigger {
+        color: lightgray;
+        display: inline-flex;
+        vertical-align: middle;
+    }
+        .modal-trigger i {
+            font-size: larger;
+        }
+
+.delete {
+    color: lightgray;
+    display: inline-flex;
+    vertical-align: sub;
+    font-size: large;
 }
-#resultImage {
-    box-shadow: rgba(0,0,0,0.4) 0 2px 5px;
+
+#files {
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
 }
+    #fileList {
+        flex: 1;
+    }
+    .dragArea {
+        background-color: #efefef;
+        border: 3px dashed #cccccc;
+        border-radius: 10px;
+        text-align: center;
+        padding: 15%;
+        /* height: 20%; */
+    }
+    .dragArea.over {
+        border-color: #ff0000;
+        background-color: #FFE9EA;
+    }
+    .resultImageWrapper {
+        display: none;
+        text-align: center;
+    }
+    #resultImage {
+        box-shadow: rgba(0,0,0,0.4) 0 2px 5px;
+    }

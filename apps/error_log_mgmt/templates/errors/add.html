@@ -3,53 +3,78 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<form action="{% url 'main:create' %}" method="post" enctype="multipart/form-data" id="add_error_form">
-    {% csrf_token %}
-    <div class="row">
-        <div class="col s8">
+{% load static %}
+<div id="container">
+    <form action="{% url 'main:create' %}" method="post" enctype="multipart/form-data" id="add_error_form">
+        {% csrf_token %}
+        <div class="row top-row">
             <h5>Log an Error</h5>
             <ul class="messages">
                 <li class="red-text" id="error-text"></li>
             </ul>
         </div>
-        <div class="col s4">
-            <p></p>
-            <button class="btn">Submit Error</button>
-        </div>
-    </div>
-    <div class="row">
-        <div id="files" class="col s4">
-            <p class="grey-text">Upload Screenshots</p>
-            <div class="dragArea">
-                <h6>Drag & Drop File(s) Here</h6>
-                <!-- <p>Or Select File:</p>
-                <div>
-                    <input type="file" name="manualUpload" id="imageFiles"/>
-                </div> -->
-            </div>
-            <div id="fileList">
+        <div class="row main-row">
+            <div id="files" class="col s4">
+                <p class="grey-text form-row-header">Upload Screenshots <a class="modal-trigger" href="#upload_modal"><i class="material-icons">info_outline</i></a></p>
+                
+                <div class="dragArea">
+                    <h6>Drag & Drop File(s) Here</h6>
+                    <!-- <p>Or Select File:</p>
+                    <div>
+                        <input type="file" name="manualUpload" id="imageFiles"/>
+                    </div> -->
+                </div>
+                <div id="fileList">
 
+                </div>
+                <div class="bottom">
+                    <button class="btn">Submit Error</button>
+                </div>
+            </div>
+            <div class="col s1"></div>
+            <div class="col s7">
+                <div class="input-field">
+                    <label for="">Description (optional)</label>
+                    <textarea type="text" name="description" class="materialize-textarea"></textarea>
+                </div>
+                <p class="grey-text">Image Preview:</p>
+                <div class="resultImageWrapper">
+                    <img src="" alt="" id="resultImage" class="thumbnail" />
+                </div>
             </div>
         </div>
-        <div class="col s1"></div>
-        <div class="col s7">
-            <div class="input-field">
-                <label for="">Description (optional)</label>
-                <textarea type="text" name="description" class="materialize-textarea"></textarea>
-            </div>
-            <p class="grey-text">Image Preview:</p>
-            <div class="resultImageWrapper">
-                <img src="" alt="" id="resultImage" width="500" />
-            </div>
-        </div>
-    </div>
-</form>
+    </form>
+</div>
 
-<script
-src="https://code.jquery.com/jquery-3.3.1.min.js"
-integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-crossorigin="anonymous"></script>
-{% load static %}
+<div id="upload_modal" class="modal">
+    <div class="modal-content">
+        <h4>How Do I Save Screenshots?</h4>
+        <h6>For Windows:</h6>
+        <ol>
+            <li>Have the error(s) displayed on your screen</li>
+            <li>Type "snipping tool" in the search bar
+                <ul>
+                    <li><img src="{% static 'errors/images/searchbar.png' %}" alt="" style="width: 50%;"></li>
+                </ul>
+            </li>
+            <li>In the Snipping Tool menu, click "New"</li>
+            <li>Drag a box around the errors you want to submit</li>
+            <li>If you don't like what was grabbed, just click "New" and start over. Otherwise, click "Save."</li>
+        </ol>
+        <h6>For Macs:</h6>
+        <ol>
+            <li>Have the error(s) displayed on your screen</li>
+            <li>Press <kbd>Shift-Command-4</kbd></li>
+            <li>Drag a box around the errors you want to submit</li>
+            <li>The screenshot should now be saved as a .png file on your desktop</li>
+        </ol>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Got it!</a>
+    </div>
+</div>
+
+
+<script src="{% static 'js/modals.js' %}" deferred></script>
 <script src="{% static 'errors/js/dragdrop.js' %}"></script>
-
 {% endblock %}

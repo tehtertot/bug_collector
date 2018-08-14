@@ -29,16 +29,17 @@
             <img class="activator thumbnail" src="{% static e.error_images.first.url %}">
         </div>
         <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">Error<i class="material-icons right">more_vert</i></span>
-            <p><a href="{% url 'main:show' e.id %}">More details please</a></p>
+            <span class="activator grey-text text-darken-4"><a href="{% url 'main:show' e.id %}">Suggestions...</a><i class="material-icons right">more_vert</i></span>
         </div>
             <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">{{e.contributor}}<i class="material-icons right">close</i></span>
+              <span class="card-title grey-text text-darken-4">from: {{e.contributor}}<i class="material-icons right">close</i></span>
               <p>{{e.description}}</p>
             </div>
           </div>
     {% endfor %}
 </div>
-    <a class="btn-floating btn-large waves-effect waves-light red" href="{% url 'main:add' %}"><i class="material-icons">add</i></a>
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large waves-effect waves-light teal" href="{% url 'main:add' %}"><i class="material-icons">add</i></a>
+</div>
 <script src="{% static 'errors/js/imagescroll.js' %}"></script>
 {% endblock %}

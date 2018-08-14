@@ -1,5 +1,5 @@
 let uploadedImages = {};
-
+let maxHeight = 300;
 // allow for drag and drop
 jQuery.event.addProp('dataTransfer');
 
@@ -27,7 +27,7 @@ $(function(){
         for (var file in files) {
             if (files[file].type.match('image.*')) {
                 addImage(files[file]);
-                resizeImage(files[file], 1000, showImage);
+                resizeImage(files[file], maxHeight, showImage);
             } else {
                 alert("Image files only");
             }
@@ -46,16 +46,16 @@ $(function(){
             var image = new Image();
             image.onload = function(){
                 var canvas = document.createElement("canvas");
-                /*
+                
                 if(image.height > size) {
                     image.width *= size / image.height;
                     image.height = size;
                 }
-                */
-                if(image.width > size) {
-                    image.height *= size / image.width;
-                    image.width = size;
-                }
+                
+                // if(image.width > size) {
+                //     image.height *= size / image.width;
+                //     image.width = size;
+                // }
                 var ctx = canvas.getContext("2d");
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 canvas.width = image.width;
@@ -76,7 +76,7 @@ $(function(){
     addImage = function(file) {
         // figure out how to prevent duplicates
         uploadedImages[file.name] = file;
-        $("#fileList").append(`<p class="item" id="${file.name}">${file.name}</p>`);
+        $("#fileList").append(`<p class="item" id="${file.name}">${file.name} <a onclick="deleteImg('${file.name}')"><i class="material-icons delete">delete_outline</a></p>`);
     }
 });
 
@@ -127,7 +127,20 @@ function displayError(msg) {
     $("#error-text").text(msg);
 }
 
+function deleteImg(filename) {
+    console.log(filename);
+    delete uploadedImages[filename];
+    console.log(uploadedImages)
+    redisplayAll();
+}
+
+function redisplayAll() {
+    $("#fileList").html("");
+    for (let file in uploadedImages) {
+        $("#fileList").append(`<p class="item" id="${file}">${file} <a onclick="deleteImg('${file}')"><i class="material-icons delete">delete_outline</a></p>`);
+    }
+}
+
 $(document).on("mouseover", ".item", function() {
-    console.log($(this).attr("id"))
-    resizeImage(uploadedImages[$(this).attr("id")], 1000, showImage)
+    resizeImage(uploadedImages[$(this).attr("id")], maxHeight, showImage)
 });

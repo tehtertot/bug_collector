@@ -17,14 +17,9 @@
 }
 
 .card-image {
-    height: 70%;
+    height: 80%;
 }
 .card-content {
     height: 20%;
     text-align: left;
-}
-
-#canvasImg {
-    /* display: none; */
-    object-fit: scale-down;
 }
