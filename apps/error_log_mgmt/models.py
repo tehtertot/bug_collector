@@ -1,9 +1,16 @@
 from django.db import models
 from ..user_mgmt.models import CustomUser
 
+class Keyword(models.Model):
+    word = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
 class StudentError(models.Model):
     description = models.TextField()
     contributor = models.ForeignKey(CustomUser, related_name="errors_shared", on_delete=models.CASCADE)
+    keywords = models.ManyToManyField(Keyword, related_name="errors_submitted")
+    # stack
     def __repr__(self):
         return f"from {self.contributor}: {self.description}"
 
@@ -20,5 +27,3 @@ class Suggestion(models.Model):
     associated_error = models.ForeignKey(StudentError, related_name="error_suggestions", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
-
-
