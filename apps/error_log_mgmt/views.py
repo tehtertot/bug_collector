@@ -12,6 +12,7 @@ def index(request):
     context = {
         "all_errors": StudentError.objects.all()
     }
+    print(f"what is context? {context}")
     return render(request, 'errors/home.html', context)
 
 @login_required
