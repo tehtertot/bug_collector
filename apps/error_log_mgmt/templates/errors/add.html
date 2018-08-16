@@ -24,6 +24,7 @@
                         <input type="file" name="manualUpload" id="imageFiles"/>
                     </div> -->
                 </div>
+                <p style="font-size: x-small;">(Hover over image names to preview)</p>
                 <div id="fileList">
 
                 </div>
@@ -34,8 +35,9 @@
             <div class="col s1"></div>
             <div class="col s7">
                 <div class="input-field">
-                    <label for="">What was supposed to happen? Or what were you trying to do? (optional)</label>
-                    <textarea type="text" name="description" class="materialize-textarea"></textarea>
+                    <label for="description">Describe your issue (optional)</label>
+                    <textarea type="text" id="description" name="description" class="materialize-textarea" style="margin-bottom: 0px;"></textarea>
+                    <p style="font-size: x-small; margin-top: 5px; text-align: left;">Consider: What was supposed to happen? What were you trying to do? What assignment were you working on?</p>
                 </div>
                 <p class="grey-text">Image Preview:</p>
                 <div class="resultImageWrapper">

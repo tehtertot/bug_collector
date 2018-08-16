@@ -1,0 +1,19 @@
+.xsmall-text {
+    font-size: x-small;
+}
+
+.small-text {
+    font-size: small;
+}
+
+#edit_image_modal {
+    width: 95%;
+    height: 96vh;
+    text-align: center;
+}
+
+#image-canvas {
+    outline: 1px dotted blue;
+    width: 90%;
+    height: 90%;
+}

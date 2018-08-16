@@ -5,22 +5,25 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'errors/css/imagescroll.css' %}">
+<link rel="stylesheet" href="{% static 'errors/css/one.css' %}">
 
 <div class="container row">
     <div class="col s9 w3-content w3-display-container">
         {% for i in error.error_images.all %}
-        <img class="mySlides" src="{% static i.url %}">
+        <img class="mySlides modal-trigger" href="#edit_image_modal" src="{% static i.url %}" onclick="prepareCanvas('{%static i.url %}')">
         {% endfor %}
+        {% if error.error_images.count > 1 %}
         <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
         <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+        {% endif %}
     </div>
     <div class="col s3 error-info">
         <ul class="collapsible">
             <li>
                 <div class="collapsible-header">What was supposed to happen?</div>
                 <div class="collapsible-body">
-                    <span>{{error.description}}</span>
-                    <p class="x-small">Submitted by: {{error.contributor}}</p>
+                    <span class="small-text">{{error.description}}</span>
+                    <p class="xsmall-text">Submitted by: {{error.contributor}}</p>
                 </div>
             </li>
             <li>
@@ -36,7 +39,7 @@
                 <div class="collapsible-header">How can we fix it?</div>
                 <div class="collapsible-body">
                     {% for s in error.error_suggestions.all %}
-                    <p>{{s.content}} (suggested by: {{s.suggestor.username}})</p>
+                    <p class="small-text">{{s.content}} (suggested by: {{s.suggestor.username}})</p>
                     {% endfor %}
                     <p><button class="btn modal-trigger" id="add_suggestion" href="#suggestion_modal">Make a suggestion</button></p>
                 </div>
@@ -72,10 +75,25 @@
         </form>
     </div>
 </div>
+
+<div id="edit_image_modal" class="modal">
+    <!-- <div id="canvas-test"> -->
+        <canvas id="image-canvas">
+        </canvas>
+        
+    <!-- </div> -->
+    <form id="updateImageForm" enctype="multipart/form-data">
+        <input type="hidden" name="">
+        {% csrf_token %}
+        <button class="btn">Save</button>
+    </form>
+</div>
+
 <script src="{% static 'js/modals.js' %}" deferred></script>
 <script src="{% static 'js/collapsibles.js' %}" deferred></script>
 <script src="{% static 'errors/js/imagezoom.js' %}"></script>
 <script src="{% static 'errors/js/imagescroll.js' %}"></script>
+<script src="{% static 'errors/js/imageEdit.js' %}"></script>
 
 {% endblock %}
 <div class="tile" data-scale="1.6" data-image="{% static i.url %}"></div>

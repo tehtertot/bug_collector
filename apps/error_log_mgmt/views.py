@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.core.files.storage import FileSystemStorage
 from .models import StudentError, CustomUser, ErrorImage, Keyword, Suggestion
+import re
 
 @login_required
 def index(request):
@@ -65,3 +66,14 @@ def add_suggestion(request, error_id):
     current_user = CustomUser.objects.get(username=request.user)
     Suggestion.objects.create(content=request.POST["suggestion"], associated_error=error, suggestor=current_user)
     return redirect(reverse('main:show', kwargs={'id': error_id}))
+
+@login_required
+def update_photo(request):
+    updatedImg = request.FILES["uploadedImage"]
+    fs = FileSystemStorage()
+    fs.save('uploaded_images/test.png', updatedImg)
+    # return redirect(reverse('main:show', kwargs={'id': 10}))
+    # imgstr = re.search(r'base64,(.*)', uri).group(1)
+    # output = open('uploaded_images/output.png', 'wb')
+    # output.write(imgstr.decode('base64'))
+    # output.close()

@@ -11,5 +11,6 @@ urlpatterns = [
     path('show/<int:id>', views.show, name="show"),
     path('add_keyword/<int:error_id>/<int:keyword_id>', views.add_keyword, name="add_keyword"),
     path('add_suggestion/<int:error_id>', views.add_suggestion, name="add_suggestion"),
+    path('updatephoto', views.update_photo, name="update_photo"),
     # path('remove_keyword/<int:error_id>/<int:keyword_id>', views.remove_keyword, name="remove_keyword")
 ]

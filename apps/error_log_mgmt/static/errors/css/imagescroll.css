@@ -29,13 +29,16 @@
     padding: 8px 16px;
     cursor: pointer;
     top: 50%;
+    border-radius: 20px;
 }
 .w3-display-left {
     left: 0%;
+    margin-left: 5px;
 }
 
 .w3-display-right {
     right: 0%;
+    margin-right: 5px;
 }
 
 .collapsible {
