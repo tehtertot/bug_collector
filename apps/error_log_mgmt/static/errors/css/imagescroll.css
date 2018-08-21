@@ -1,50 +1,35 @@
-.mySlides {
-    display:none;
-}
-
-.container.row {
-    margin: 10px;
-}
-
-.row {
-    width: 98%;
-}
 .w3-display-container {
     position: relative;
     height: 85vh;
     margin: 0 auto;
     border: 1px solid lightgrey;
 }
+    /* IMAGES */
+    .w3-display-container img {
+        margin: 0 auto;
+        object-fit: scale-down;
+        height: 100%;
+        width: 100%;
+    }
+    .images {
+        display: none;
+    }
 
-.w3-display-container img {
-    margin: 0 auto;
-    object-fit: scale-down;
-    height: 100%;
-    width: 100%;
-}
+    /* ARROW BUTTONS */
+    .w3-button {
+        position: absolute;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        top: 50%;
+        border-radius: 20px;
+    }
+    .w3-display-left {
+        left: 0%;
+        margin-left: 5px;
+    }
 
-.w3-button {
-    position: absolute;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    top: 50%;
-    border-radius: 20px;
-}
-.w3-display-left {
-    left: 0%;
-    margin-left: 5px;
-}
-
-.w3-display-right {
-    right: 0%;
-    margin-right: 5px;
-}
-
-.collapsible {
-    margin-top: 0;
-}
-
-.collapsible-body {
-    padding: 8px 0;
-}
+    .w3-display-right {
+        right: 0%;
+        margin-right: 5px;
+    }

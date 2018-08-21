@@ -1,3 +1,4 @@
+// NOT CURRENTLY BEING USED
 $('.tile')
     // tile mouse actions
     .on('mouseover', function(){

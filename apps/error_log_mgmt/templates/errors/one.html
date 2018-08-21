@@ -1,16 +1,22 @@
 {% extends 'errors/base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}View{% endblock %}
+
+{% block additionalStatic %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'errors/css/one.css' %}">
+<link rel="stylesheet" href="{% static 'errors/css/imagescroll.css' %}">
+<script src="{% static 'js/modals.js' %}" defer></script>
+<script src="{% static 'js/collapsibles.js' %}" defer></script>
+<script src="{% static 'errors/js/imagescroll.js' %}" defer></script>
+{% endblock %}
 
 {% block content %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'errors/css/imagescroll.css' %}">
-<link rel="stylesheet" href="{% static 'errors/css/one.css' %}">
-
 <div class="container row">
     <div class="col s9 w3-content w3-display-container">
         {% for i in error.error_images.all %}
-        <img class="mySlides modal-trigger" href="#edit_image_modal" src="{% static i.url %}" onclick="prepareCanvas('{%static i.url %}')">
+        {# <!-- <img class="mySlides modal-trigger" href="#edit_image_modal" src="{% static i.url %}" onclick="prepareCanvas('{%static i.url %}')"> --> #}
+        <img class="images" src="{% static i.url %}">
         {% endfor %}
         {% if error.error_images.count > 1 %}
         <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
@@ -48,6 +54,7 @@
     </div>
 </div>    
     
+<!-- MODALS -->
 <div id="add_modal" class="modal">
     <div class="modal-content">
         <h4>Add a Keyword</h4>
@@ -64,7 +71,14 @@
     <div class="modal-content">
         <h4>Add a Suggestion</h4>
         <p></p>
-        <p>Consider including: How would you describe the error in your own words? Where would you look first? What did you google? Do you have a helpful link to reference? How did you solve this?</p>
+        <p>Consider:</p>
+            <ul class="small-text">
+                <li>How would you describe the error in your own words?</li>
+                <li>Where would you look first?</li>
+                <li>What could you google?</li>
+                <li>Do you have a helpful link to reference?</li>
+                <li>How did you solve this?</li>
+            </ul>
         <form action="/add_suggestion/{{error.id}}" method="POST">
             {% csrf_token %}
             <div class="input-field">
@@ -76,24 +90,16 @@
     </div>
 </div>
 
-<div id="edit_image_modal" class="modal">
-    <!-- <div id="canvas-test"> -->
+<!-- <div id="edit_image_modal" class="modal">
         <canvas id="image-canvas">
         </canvas>
-        
-    <!-- </div> -->
     <form id="updateImageForm" enctype="multipart/form-data">
         <input type="hidden" name="">
         {% csrf_token %}
         <button class="btn">Save</button>
     </form>
-</div>
-
-<script src="{% static 'js/modals.js' %}" deferred></script>
-<script src="{% static 'js/collapsibles.js' %}" deferred></script>
-<script src="{% static 'errors/js/imagezoom.js' %}"></script>
-<script src="{% static 'errors/js/imagescroll.js' %}"></script>
-<script src="{% static 'errors/js/imageEdit.js' %}"></script>
+</div> -->
 
 {% endblock %}
-<div class="tile" data-scale="1.6" data-image="{% static i.url %}"></div>
+<!-- <script src="{% static 'errors/js/imagezoom.js' %}" defer></script> -->
+<!-- <div class="tile" data-scale="1.6" data-image="{% static i.url %}"></div> -->

@@ -1,0 +1,30 @@
+.row.card-display {
+    width: 98%;
+}
+
+/* CARDS */
+.card.error-card {
+    height: 50vh;
+    margin: 10px;
+}
+.card.error-card.col.s3 {
+    width: 24%;
+}
+    /* TOP: CARD IMAGE */
+    .card-image {
+        height: 85%;
+        text-align: center;
+    }
+        .thumbnail {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: scale-down;
+            padding: 10px 5px;
+            margin: 0 auto;
+        }
+
+    /* BOTTOM: CARD TEXT */
+    .card .card-content {
+        height: 10%;
+        padding: 10px;
+    }

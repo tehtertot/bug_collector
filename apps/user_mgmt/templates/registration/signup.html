@@ -1,0 +1,24 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+{% load widget_tweaks %}
+<div class="row">
+  <h2>Sign Up</h2>
+  <form method="POST" class="container">
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+      <div class="input-field">
+      {{ field }}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {% for error in field.errors %}
+      <span class="blue-text">{{ error }}</span>
+      {% endfor %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn">Sign up</button>
+  </form>
+  <p><a href="/accounts/login">Already registered? Sign in here.</a></p>
+</div>
+{% endblock %}

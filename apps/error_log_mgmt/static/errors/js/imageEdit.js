@@ -7,6 +7,7 @@ function prepareCanvas(file) {
 
     // var mainCanvas = document.createElement("canvas");
     var mainCanvas = document.getElementById("image-canvas");
+    // mainCanvas.clearRect(0, 0, maxWidth, maxHeight);
     mainCanvas.setAttribute("width", maxWidth);
     mainCanvas.setAttribute("height", maxHeight);
         // mainCanvas.setAttribute("id", "image-canvas");
@@ -21,17 +22,18 @@ function prepareCanvas(file) {
     // load background image
     var background = new Image();
     background.onload = function() {
+        let height, width;
         if(background.height > maxHeight) {
-            background.width *= maxHeight / background.height;
-            background.height = maxHeight;
+            width = background.width * maxHeight / background.height;
+            height = maxHeight;
         }
         else if(background.width > maxWidth) {
-            background.height *= maxWidth / background.width;
-            background.width = maxWidth;
+            height = background.height * maxWidth / background.width;
+            width = maxWidth;
         }
         console.log(background)
         
-        backContext.drawImage(background, 0, 0, background.width, background.height);
+        backContext.drawImage(background, 0, 0, width, height);
         // background = canvas.toDataURL("image/png");
     }
     background.src = file;

@@ -1,23 +1,29 @@
 {% extends 'errors/base.html' %}
 
 {% block title %}Home{% endblock %}
+{% block additionalStatic %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'errors/css/home.css' %}">
+<link rel="stylesheet" href="{% static 'errors/css/imagescroll.css' %}">
+<script src="{% static 'errors/js/imagescroll.js' %}" defer></script>
+{% endblock %}
 
 {% block content %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'errors/css/imagescroll.css' %}">
 <div class="row card-display">
+    <!-- DISPLAY EACH CARD -->
     {% for e in all_errors %}
+    <a href="{% url 'main:show' e.id %}">
     <div class="card col s3 error-card">
         <div class="card-image waves-effect waves-block waves-light">
             <img class="thumbnail" src="{% static e.error_images.first.url %}">
         </div>
         <div class="card-content row text-with-icon">
-            <span class="col s10">{{e.description | truncatechars:25}} </span><span class="col s2"><a href="{% url 'main:show' e.id %}"><i class="material-icons gray right">arrow_forward</i></a></span>
+            <span class="col s10">{{e.description | truncatechars:25}} </span><span class="col s2"><i class="material-icons gray right">arrow_forward</i></span>
         </div>
-    </div>
+    </div></a>
     {% endfor %}
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large waves-effect waves-light teal" href="{% url 'main:add' %}"><i class="material-icons">add</i></a>
 </div>
-<script src="{% static 'errors/js/imagescroll.js' %}"></script>
+
 {% endblock %}

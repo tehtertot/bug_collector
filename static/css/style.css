@@ -4,31 +4,6 @@
     height: 100%;
 }
 
-.thumbnail {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: scale-down;
-    padding: 10px 5px;
-    margin: 0 auto;
-}
-.card.error-card {
-    height: 50vh;
-    margin: 10px;
-}
-.card.error-card.col.s3 {
-    width: 24%;
-}
-
-.card-image {
-    height: 85%;
-    text-align: center;
-}
-
-.card .card-content {
-    height: 10%;
-    padding: 10px;
-}
-
 .text-with-icon {
     color: gray;
     display: inline-flex;
@@ -37,3 +12,11 @@
     .material-icons.gray {
         color: gray;
     }
+
+.xsmall-text {
+    font-size: x-small;
+}
+
+.small-text {
+    font-size: small;
+}

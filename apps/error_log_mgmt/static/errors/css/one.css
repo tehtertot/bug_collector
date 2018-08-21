@@ -1,12 +1,20 @@
-.xsmall-text {
-    font-size: x-small;
+.container.row {
+    margin: 10px;
+    width: 98%;
 }
+    /* LEFT SIDE: IMAGES */
+    /* see imagescroll.css */
 
-.small-text {
-    font-size: small;
-}
-
-#edit_image_modal {
+    /* RIGHT SIDE: DETAILS */
+    .collapsible {
+        margin-top: 0;
+    }
+        .collapsible-body {
+            padding: 8px 0;
+        }
+    
+/* MODALS */
+/* #edit_image_modal {
     width: 95%;
     height: 96vh;
     text-align: center;
@@ -16,4 +24,4 @@
     outline: 1px dotted blue;
     width: 90%;
     height: 90%;
-}
+} */

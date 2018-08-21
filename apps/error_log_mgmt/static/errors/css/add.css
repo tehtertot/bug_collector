@@ -1,0 +1,47 @@
+/* DISPLAY OF FORM */
+#container {
+    height: 85vh;
+}
+    /* HEADER */
+    .top-row {
+        height: 10%;
+        margin-bottom: 0;
+    }
+    /* LEFT SIDE - FILE UPLOAD */
+    /* see also dragdrop.css for file upload box */
+    #files {
+        display: flex;
+        flex-direction: column;
+        height: 75vh;
+    }
+        #fileList {
+            flex: 1;
+        }
+        .delete {
+            color: lightgray;
+            display: inline-flex;
+            vertical-align: sub;
+            font-size: large;
+        }
+    /* RIGHT SIDE - DESC & IMAGE PREVIEW */
+    /* see dragdrop.css for image preview */
+    .desc {
+        margin-bottom: 0px;
+    }
+    .prompt-text {
+        margin-top: 5px;
+        text-align: left;
+    }
+
+/* SCREENSHOT MODAL */
+.modal {
+    max-height: 85%;
+}
+    .modal-trigger {
+        color: lightgray;
+        display: inline-flex;
+        vertical-align: middle;
+    }
+        .modal-trigger i {
+            font-size: larger;
+        }

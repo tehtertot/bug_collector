@@ -1,12 +1,20 @@
 {% extends 'errors/base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Submit an Error{% endblock %}
+{% block additionalStatic %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'errors/css/add.css' %}">
+<link rel="stylesheet" href="{% static 'errors/css/dragdrop.css' %}">
+<script src="{% static 'js/modals.js' %}" defer></script>
+<script src="{% static 'errors/js/add.js' %}" defer></script>
+<script src="{% static 'errors/js/dragdrop.js' %}" defer></script>
+{% endblock %}
 
 {% block content %}
-{% load static %}
 <div id="container">
-    <form action="{% url 'main:create' %}" method="post" enctype="multipart/form-data" id="add_error_form">
+    <form action="{% url 'main:create' %}" method="post" enctype="multipart/form-data" id="add-error-form">
         {% csrf_token %}
+        <!-- HEADER -->
         <div class="row top-row">
             <h5>Log an Error</h5>
             <ul class="messages">
@@ -14,17 +22,15 @@
             </ul>
         </div>
         <div class="row main-row">
+            <!-- LEFT SIDE -->
             <div id="files" class="col s4">
-                <p class="grey-text form-row-header">Upload Screenshots <a class="modal-trigger" href="#upload_modal"><i class="material-icons">info_outline</i></a></p>
+                <p class="grey-text form-row-header">Upload Screenshots <a class="modal-trigger" href="#upload-modal"><i class="material-icons">info_outline</i></a></p>
                 
                 <div class="dragArea">
                     <h6>Drag & Drop File(s) Here</h6>
-                    <!-- <p>Or Select File:</p>
-                    <div>
-                        <input type="file" name="manualUpload" id="imageFiles"/>
-                    </div> -->
+                    <!-- Provide option for manual upload? -->
                 </div>
-                <p style="font-size: x-small;">(Hover over image names to preview)</p>
+                <p class="xsmall-text">(Hover over image names to preview)</p>
                 <div id="fileList">
 
                 </div>
@@ -33,22 +39,25 @@
                 </div>
             </div>
             <div class="col s1"></div>
+            <!-- RIGHT SIDE -->
             <div class="col s7">
                 <div class="input-field">
                     <label for="description">Describe your issue (optional)</label>
-                    <textarea type="text" id="description" name="description" class="materialize-textarea" style="margin-bottom: 0px;"></textarea>
-                    <p style="font-size: x-small; margin-top: 5px; text-align: left;">Consider: What was supposed to happen? What were you trying to do? What assignment were you working on?</p>
+                    <textarea type="text" name="description" class="materialize-textarea desc"></textarea>
+                    <p class="xsmall-text prompt-text">Consider: What was supposed to happen? What were you trying to do? What assignment were you working on?</p>
                 </div>
-                <p class="grey-text">Image Preview:</p>
+                <p class="grey-text">Image Preview</p>
                 <div class="resultImageWrapper">
-                    <img src="" alt="" id="resultImage" class="thumbnail" />
+                    <img src="" alt="" id="resultImage" />
                 </div>
             </div>
         </div>
     </form>
 </div>
 
-<div id="upload_modal" class="modal">
+<!-- MODAL -->
+<!-- How to save screenshots -->
+<div id="upload-modal" class="modal">
     <div class="modal-content">
         <h4>How Do I Save Screenshots?</h4>
         <h6>For Windows:</h6>
@@ -76,7 +85,4 @@
     </div>
 </div>
 
-
-<script src="{% static 'js/modals.js' %}" deferred></script>
-<script src="{% static 'errors/js/dragdrop.js' %}"></script>
 {% endblock %}
