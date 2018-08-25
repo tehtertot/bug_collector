@@ -4,9 +4,11 @@
         <meta charset="utf-8">
         <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="{% static 'js/dropdowns.js' %}" defer></script>
     </head>
     <body>
         <main>
