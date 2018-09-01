@@ -16,7 +16,7 @@
     <div class="col s9 w3-content w3-display-container">
         {% for i in error.error_images.all %}
         {# <!-- <img class="mySlides modal-trigger" href="#edit_image_modal" src="{% static i.url %}" onclick="prepareCanvas('{%static i.url %}')"> --> #}
-        <img class="images" src="{% static i.url %}">
+        <img class="images" src="/{{i.url}}" alt="{{i.url}}">
         {% endfor %}
         {% if error.error_images.count > 1 %}
         <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>

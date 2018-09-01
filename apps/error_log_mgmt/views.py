@@ -33,8 +33,8 @@ def create(request):
             for file in request.FILES.getlist("uploadedImages"):
             # for f in request.FILES:
                 # file = request.FILES[f]
-                filename = fs.save('uploaded_images/'+file.name, file)
-                ErrorImage.objects.create(url=filename[16:], uploader=current_user, associated_error=new_error)
+                filename = fs.save(file.name, file)
+                ErrorImage.objects.create(url='media/'+filename, uploader=current_user, associated_error=new_error)
             return JsonResponse(response)
         except:
             response['status'] = 0
@@ -71,9 +71,9 @@ def add_suggestion(request, error_id):
 def update_photo(request):
     updatedImg = request.FILES["uploadedImage"]
     fs = FileSystemStorage()
-    fs.save('uploaded_images/test.png', updatedImg)
+    fs.save('media/test.png', updatedImg)
     # return redirect(reverse('main:show', kwargs={'id': 10}))
     # imgstr = re.search(r'base64,(.*)', uri).group(1)
-    # output = open('uploaded_images/output.png', 'wb')
+    # output = open('media/output.png', 'wb')
     # output.write(imgstr.decode('base64'))
     # output.close()

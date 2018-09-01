@@ -13,4 +13,4 @@ urlpatterns = [
     path('add_suggestion/<int:error_id>', views.add_suggestion, name="add_suggestion"),
     path('updatephoto', views.update_photo, name="update_photo"),
     # path('remove_keyword/<int:error_id>/<int:keyword_id>', views.remove_keyword, name="remove_keyword")
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
