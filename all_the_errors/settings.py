@@ -31,9 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'widget_tweaks',
+    # 'widget_tweaks',
     'apps.user_mgmt',
+    'apps.glossary',
     'apps.error_log_mgmt',
+    'push_notifications',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +43,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+PUSH_NOTIFICATIONS_SETTINGS = {
+        "USER_MODEL": 'user_mgmt.CustomUser',
+        "FCM_API_KEY": "AAAATgqQr2Q:APA91bFYzWeY-6cUJEIsfxhbJ2wRE0CtCsE0CeoteVR7ToZ8yagHx1UdhzR0-glpyUzNxxdrxlvXPFvfjVj7fBASEfYzaE1E22OZGgr9bDoKbMFe0gfJxiolbHnj-d9uEzwG4Er1inB-",
+        # "APNS_CERTIFICATE": "/path/to/your/certificate.pem",
+        # "APNS_TOPIC": "com.example.push_test",
+        # "WNS_PACKAGE_SECURITY_ID": "[your package security id, e.g: 'ms-app://e-3-4-6234...']",
+        # "WNS_SECRET_KEY": "[your app secret key, e.g.: 'KDiejnLKDUWodsjmewuSZkk']",
+        # "WP_PRIVATE_KEY": "/path/to/your/private.pem",
+        # "WP_CLAIMS": {'sub': "mailto: development@example.com"}
+}
 
 AUTH_USER_MODEL = 'user_mgmt.CustomUser'
 

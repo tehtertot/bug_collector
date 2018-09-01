@@ -3,7 +3,6 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-{% load widget_tweaks %}
 <div class="row">
   <h2>Sign Up</h2>
   <form method="POST" class="container">
@@ -42,7 +41,7 @@
       </div>
       <div class="input-field col s3">
         <select name="mobile_OS" id="id_mobile_OS">
-          <option value disabled selected class="gray-text">Select your Mobile OS</option>
+          <option value disabled selected class="gray-text">Mobile OS</option>
           <option value="1">Android</option>
           <option value="2">iOS</option>
           <option value="3">Windows</option>
