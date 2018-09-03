@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="row">
-  <h2>Sign Up</h2>
+  <h4>Sign Up</h4>
   <form method="POST" class="container">
     {% csrf_token %}
     <div class="row">
@@ -14,7 +14,7 @@
         <span class="blue-text">{{ form.username.errors }}</span>
       </div>
       <div class="input-field col s6">
-        <input type="email" name="email" maxlength="45" required id="id_email">
+        <input type="email" name="email" maxlength="45" id="id_email">
         <label for="id_email" class="active">Email</label>
         <span class="blue-text">{{ form.email.errors }}</span>
       </div>

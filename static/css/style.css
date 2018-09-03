@@ -24,3 +24,8 @@
 .small-text {
     font-size: small;
 }
+
+.modal-trigger {
+    cursor: pointer;
+    color: #26c6da;
+}
