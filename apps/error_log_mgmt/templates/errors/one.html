@@ -61,7 +61,7 @@
         {% for key in other_keywords %}
         <form action="/add_keyword/{{error.id}}/{{key.id}}" method="POST">
             {% csrf_token %}
-            <button class="chip no-btn">{{key.word}}<i class="material-icons">add</i></button>
+            <button class="waves-effect waves-light btn regular-case"><i class="material-icons right">add</i>{{key.word}}</button>
         {% endfor %}
         </form>
     </div>

@@ -44,7 +44,7 @@ def create(request):
 def show(request, id):
     error_to_display = StudentError.objects.get(id=id)
     context = {'error': error_to_display,
-                'other_keywords': Keyword.objects.exclude(errors_submitted=error_to_display)
+                'other_keywords': Keyword.objects.exclude(errors_submitted=error_to_display).order_by('word')
                }
     return render(request, "errors/one.html", context)
 

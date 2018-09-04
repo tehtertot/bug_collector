@@ -29,3 +29,7 @@
     cursor: pointer;
     color: #26c6da;
 }
+
+.regular-case {
+    text-transform: none;
+}
