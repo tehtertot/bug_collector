@@ -77,3 +77,18 @@ def update_photo(request):
     # output = open('media/output.png', 'wb')
     # output.write(imgstr.decode('base64'))
     # output.close()
+
+def get_autocomplete_errors(request):
+    data = {}
+    for word in Keyword.objects.all():
+        data[word.word] = None
+    return JsonResponse(data)
+
+def get_error_cards(request, keyword):
+    to_display = StudentError.objects.all()
+    if keyword != "":
+        to_display = to_display.filter(keywords__word=keyword)
+    context = {
+        "all_errors": to_display
+    }
+    return render(request, "errors/error_cards.html", context)

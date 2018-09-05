@@ -1,12 +1,12 @@
-// $(document).ready(function(){
-//     $('input.autocomplete').autocomplete({
-//         data: {
-//         "Apple": null,
-//         "Microsoft": null,
-//         "Google": 'https://placehold.it/250x250'
-//         },
-//     });
-// });
-
-// var instance = M.Autocomplete.getInstance(elem);
-// instance.open();
+$(document).ready(function(){
+    $.get('/autocomplete', function(data) {
+        $('input.autocomplete').autocomplete({
+            data: data,
+            onAutocomplete: function() {
+                $.get(`/filtered/${$("#autocomplete-input").val()}`, function(cards) {
+                    $("#errors").html(cards);
+                });
+            }
+        });
+    })
+});

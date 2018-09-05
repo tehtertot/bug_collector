@@ -1,0 +1,12 @@
+{% for e in all_errors %}
+<a href="{% url 'main:show' e.id %}">
+    <div class="card col s3 error-card">
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="thumbnail" src="{{e.error_images.first.url}}" alt="{{e.error_images.first.url}}">
+        </div>
+        <div class="card-content row text-with-icon">
+            <span class="col s10">{{e.description | truncatechars:20}} </span><span class="col s2"><i class="material-icons gray right">arrow_forward</i></span>
+        </div>
+    </div>
+</a>
+{% endfor %}

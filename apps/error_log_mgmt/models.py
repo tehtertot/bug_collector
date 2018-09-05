@@ -7,6 +7,8 @@ class Keyword(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
     def __repr__(self):
         return f"<Keyword: {self.word}>"
+    def __str__(self):
+        return f"{self.word}"
 
 class StudentError(models.Model):
     description = models.TextField()

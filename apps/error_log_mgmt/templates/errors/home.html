@@ -8,12 +8,13 @@
 {% endblock %}
 
 {% block content %}
-<!-- <div class="row">
-    <form action="#" method="GET">
-        <input id="icon_prefix" type="text" class="autocomplete" placeholder="filter by error">
-    </form>
-</div> -->
-<div class="row card-display">
+<div class="row">
+    <div class="input-field col s12">
+        <input type="text" id="autocomplete-input" class="autocomplete">
+        <label for="autocomplete-input">filter by error</label>
+    </div>
+</div>
+<div class="row card-display" id="errors">
     <!-- DISPLAY EACH CARD -->
     {% for e in all_errors %}
     <a href="{% url 'main:show' e.id %}">

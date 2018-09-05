@@ -7,9 +7,9 @@
         <link rel="stylesheet" href="{% static 'css/material-style.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script src="{% static 'js/jquery.min.js' %}"></script>
-        <script src="{% static 'js/materialize.min.js' %}"></script>
-        <script src="{% static 'js/sw.js' %}"></script>
+        <script src="{% static 'js/jquery.min.js' %}" defer></script>
+        <script src="{% static 'js/materialize.min.js' %}" defer></script>
+        <!-- <script src="{% static 'js/sw.js' %}"></script> -->
         {% block additionalStatic %}{% endblock %}   
     </head>
     <body>
