@@ -12,6 +12,10 @@
         .collapsible-body {
             padding: 8px 0;
         }
+
+    .btn.modal-trigger {
+        color: white;
+    }
     
 /* MODALS */
 /* #edit_image_modal {
