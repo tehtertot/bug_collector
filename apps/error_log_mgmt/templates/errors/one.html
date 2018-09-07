@@ -62,8 +62,8 @@
         <form action="/add_keyword/{{error.id}}/{{key.id}}" method="POST">
             {% csrf_token %}
             <button class="waves-effect waves-light btn regular-case"><i class="material-icons right">add</i>{{key.word}}</button>
-        {% endfor %}
         </form>
+        {% endfor %}
     </div>
 </div>
     
