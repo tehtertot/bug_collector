@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+    // materialize autocomplete
     $.get('/autocomplete', function(data) {
         $('input.autocomplete').autocomplete({
             data: data,
@@ -8,5 +10,12 @@ $(document).ready(function(){
                 });
             }
         });
+    })
+
+    $("#clear-filter").click(function() {
+        $.get("filtered/all", function(cards) {
+            $('#autocomplete-input').val("");
+            $("#errors").html(cards);
+        })
     })
 });

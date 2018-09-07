@@ -17,6 +17,10 @@
         color: white;
     }
     
+    .add-keyword {
+        display: inline-block;
+        margin: 10px;
+    }
 /* MODALS */
 /* #edit_image_modal {
     width: 95%;

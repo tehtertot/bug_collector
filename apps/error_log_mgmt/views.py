@@ -86,7 +86,7 @@ def get_autocomplete_errors(request):
 
 def get_error_cards(request, keyword):
     to_display = StudentError.objects.all()
-    if keyword != "":
+    if keyword != "all" and keyword != "":
         to_display = to_display.filter(keywords__word=keyword)
     context = {
         "all_errors": to_display

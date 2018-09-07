@@ -55,11 +55,13 @@
 </div>    
     
 <!-- MODALS -->
+
+<!-- ADD ERROR KEYWORD MODAL -->
 <div id="add_modal" class="modal">
     <div class="modal-content">
         <h4>Add a Keyword</h4>
         {% for key in other_keywords %}
-        <form action="/add_keyword/{{error.id}}/{{key.id}}" method="POST">
+        <form action="/add_keyword/{{error.id}}/{{key.id}}" method="POST" class="add-keyword">
             {% csrf_token %}
             <button class="waves-effect waves-light btn regular-case"><i class="material-icons right">add</i>{{key.word}}</button>
         </form>
@@ -67,6 +69,7 @@
     </div>
 </div>
     
+<!-- ADD SUGGESTION MODAL -->
 <div id="suggestion_modal" class="modal">
     <div class="modal-content">
         <h4>Add a Suggestion</h4>
