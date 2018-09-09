@@ -17,4 +17,5 @@ class CustomUser(AbstractUser):
     def __repr__(self):
         return f"User object: {self.username}"
     def display_name(self):
-        return f"{self.first_name} {self.last_name[0] if len(self.last_name) > 0 else ''}."
+        last_name = self.last_name[0] + "." if len(self.last_name) > 0 else ''
+        return f"{self.first_name} {last_name}"
