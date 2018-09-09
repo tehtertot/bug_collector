@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # 'widget_tweaks',
     'apps.user_mgmt',
     'apps.glossary',
+    'apps.leaderboard',
     'apps.error_log_mgmt',
     'push_notifications',
     'django.contrib.admin',

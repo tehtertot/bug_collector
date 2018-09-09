@@ -1,0 +1,1 @@
+$(".menu-dropdown").dropdown({hover: true});
