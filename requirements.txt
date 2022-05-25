@@ -22,7 +22,7 @@ mccabe==0.6.1
 Pillow==5.2.0
 py-vapid==1.4.0
 pycparser==2.18
-PyJWT==1.6.4
+PyJWT==2.4.0
 pylint==2.1.1
 pytz==2018.5
 pywebpush==1.7.0
